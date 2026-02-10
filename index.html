@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستم ثبت غیبت مدرسه</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+    <style>
+        .datetime-box {
+            margin: 15px auto 0;
+            width: fit-content;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .datetime-box div {
+            margin: 4px 0;
+        }
+
+        #weekday {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        #date {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        #time {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+        }
+
+        header {
+            background: linear-gradient(90deg, #1e3a8a, #0b1730);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 15px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #6e7b9c, #182c55);
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {}
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 15px;
+            background: #f9fafb;
+        }
+
+        .accordion-content.active {
+            padding: 15px;
+            max-height: 2000px;
+        }
+
+        .inner-card {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        .student {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .student:hover {
+            background: #f1f5f9;
+        }
+
+        .student:last-child {
+            border-bottom: none;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            color: white;
+            font-family: "Vazirmatn";
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #15803d, #16a34a);
+            transform: scale(1.02);
+        }
+
+        .amir {
+            background: #7a7a7a;
+        }
+
+        .amir :hover {
+            background: #262626;
+        }
+
+
+        /* .name{
+    padding: 10px 0;
+    display: block;
+}
+
+.name-1{
+    display: flex;
+    justify-content: end;
+} */
+    </style>
+</head>
+
+<body>
+
+    <header>
+        سیستم ثبت غیبت مدرسه
+        <div class="datetime-box">
+            <div id="weekday"></div>
+            <div id="date"></div>
+            <div id="time"></div>
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <!-- شیفت تندگویان -->
+        <div class="card">
+            <div class="accordion-header shift-header">شیفت تندگویان</div>
+            <div class="accordion-content shift-content">
+
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته کامپیوتر</div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته برق</div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته برق 2 </div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته مکانیک </div>
+                    <div class="accordion-content class-content">
+                        <div class="student"><span>امیرحسین احمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>مهدی اکبری</span><input type="checkbox"></div>
+                        <div class="student"><span>رضا عباسی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- شیفت علم صنعت -->
+        <div class="card">
+            <div class="accordion-header shift-header">شیفت علم و صنعت</div>
+            <div class="accordion-content shift-content">
+
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته کامپیوتر</div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته برق</div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته برق 2 </div>
+                    <div class="accordion-content class-content">
+                        <span style=" display:flex; justify-content: start;"> نام و نام خانوادگی: </span>
+                        <span style=" display:flex; justify-content: end;">غیبت</span>
+                        <hr>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <div class="student"><span>علی رضایی</span><input type="checkbox"></div>
+                        <div class="student"><span>محمد محمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>حسین کریمی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+                <div class="inner-card">
+                    <div class="accordion-header class-header amir">رشته مکانیک </div>
+                    <div class="accordion-content class-content">
+                        <div class="student"><span>امیرحسین احمدی</span><input type="checkbox"></div>
+                        <div class="student"><span>مهدی اکبری</span><input type="checkbox"></div>
+                        <div class="student"><span>رضا عباسی</span><input type="checkbox"></div>
+                        <button>ثبت غیبت کلاس</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // کنترل شیفت‌ها
+        document.querySelectorAll(".shift-header").forEach(header => {
+            header.addEventListener("click", function () {
+                const content = this.nextElementSibling;
+
+                document.querySelectorAll(".shift-content").forEach(c => {
+                    if (c !== content) c.classList.remove("active");
+                });
+
+                content.classList.toggle("active");
+            });
+        });
+
+        // کنترل رشته‌ها
+        document.querySelectorAll(".class-header").forEach(header => {
+            header.addEventListener("click", function (e) {
+                e.stopPropagation();
+                const content = this.nextElementSibling;
+                const parent = this.closest(".shift-content");
+
+                parent.querySelectorAll(".class-content").forEach(c => {
+                    if (c !== content) c.classList.remove("active");
+                });
+
+                content.classList.toggle("active");
+            });
+        });
+
+        // تایید ثبت غیبت
+        document.querySelectorAll("button").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const confirmAction = confirm("آیا از ثبت غیبت این کلاس مطمئن هستید؟");
+                if (confirmAction) {
+                    alert("غیبت‌ها با موفقیت ثبت شد ✅");
+                }
+            });
+        });
+        function updateDateTime() {
+    const now = new Date();
+
+    const weekday = new Intl.DateTimeFormat('fa-IR', {
+        weekday: 'long'
+    }).format(now);
+
+    const date = new Intl.DateTimeFormat('fa-IR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }).format(now);
+
+    const time = new Intl.DateTimeFormat('fa-IR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }).format(now);
+
+    document.getElementById("weekday").textContent = weekday;
+    document.getElementById("date").textContent = date;
+    document.getElementById("time").textContent = time;
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
+
+
+    </script>
+
+</body>
+
+</html>
