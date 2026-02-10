@@ -152,6 +152,25 @@
             background: #262626;
         }
 
+        .dashboard {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .dashboard h3 {
+            margin-bottom: 15px;
+        }
+
+        #absentList li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+
 
         /* .name{
     padding: 10px 0;
@@ -376,6 +395,11 @@
 
             </div>
         </div>
+        <div class="dashboard">
+            <h3>📋 لیست غایبین امروز</h3>
+            <ul id="absentList"></ul>
+        </div>
+
 
     </div>
 
@@ -418,31 +442,51 @@
             });
         });
         function updateDateTime() {
-    const now = new Date();
+            const now = new Date();
 
-    const weekday = new Intl.DateTimeFormat('fa-IR', {
-        weekday: 'long'
-    }).format(now);
+            const weekday = new Intl.DateTimeFormat('fa-IR', {
+                weekday: 'long'
+            }).format(now);
 
-    const date = new Intl.DateTimeFormat('fa-IR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    }).format(now);
+            const date = new Intl.DateTimeFormat('fa-IR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }).format(now);
 
-    const time = new Intl.DateTimeFormat('fa-IR', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    }).format(now);
+            const time = new Intl.DateTimeFormat('fa-IR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            }).format(now);
 
-    document.getElementById("weekday").textContent = weekday;
-    document.getElementById("date").textContent = date;
-    document.getElementById("time").textContent = time;
+            document.getElementById("weekday").textContent = weekday;
+            document.getElementById("date").textContent = date;
+            document.getElementById("time").textContent = time;
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+        function updateDashboard() {
+    const list = document.getElementById("absentList");
+    list.innerHTML = "";
+
+    document.querySelectorAll(".student").forEach(student => {
+        const checkbox = student.querySelector("input");
+        if (checkbox.checked) {
+            const name = student.querySelector("span").textContent;
+            const li = document.createElement("li");
+            li.textContent = name;
+            list.appendChild(li);
+        }
+    });
 }
 
-updateDateTime();
-setInterval(updateDateTime, 1000);
+// هر وقت تیک عوض شد، داشبورد آپدیت شود
+document.querySelectorAll(".student input").forEach(input => {
+    input.addEventListener("change", updateDashboard);
+});
+
 
 
     </script>
